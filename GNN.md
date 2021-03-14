@@ -15,6 +15,8 @@ GCN的最原始论文，基于图卷积
 ![](/g_1006.png)
 ![](/g_1007.jpg)
 ![](/g_1008.jpg)
+![](/g_1008.jpg)
+![](/g_1007.png)
 
 # [Inductive Representation Learning on Large Graphs](https://arxiv.org/abs/1706.02216)
 
