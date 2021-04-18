@@ -1,3 +1,7 @@
+---
+typora-copy-images-to: img
+---
+
 # [A Visual Intro to NumPy and Data Representation](https://jalammar.github.io/visual-numpy/)
 
 ![img](http://www.junphy.com/wordpress/wp-content/uploads/2019/10/numpy-array.png)
