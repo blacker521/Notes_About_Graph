@@ -1,6 +1,5 @@
 ---
-typora-root-url: img
-
+typora-root-url:img
 ---
 
 # [Efficient Estimation of Word Representations in Vector Space](https://arxiv.org/pdf/1301.3781.pdf)
@@ -817,7 +816,7 @@ BERT的论文为我们介绍了几种BERT可以处理的NLP任务：
 ## 如何使用BERT
 
 
- 
+
 
 使用BERT的最佳方式是通过 [BERT FineTuning with Cloud TPUs](https://colab.research.google.com/github/tensorflow/tpu/blob/master/tools/colab/bert_finetuning_with_cloud_tpus.ipynb) 谷歌云上托管的笔记。如果你未使用过谷歌云TPU可以试试看，这是个不错的尝试。另外BERT也适用于TPU，CPU和GPU
 
@@ -1206,3 +1205,4 @@ GPT3的重要计算发生在其96个 transformer 解码层的堆栈中。
 微调实际上是更新模型的权重，让模型在某项任务中表现得更好。
 
 ![img](https://phaven-prod.s3.amazonaws.com/files/image_part/asset/2487530/gogCyHG5hmhoeaDtLb0hfusMc3w/large_10-gpt3-fine-tuning.gif)
+
