@@ -131,8 +131,6 @@ Word2vec是一种有效创建词嵌入的方法，它自2013年以来就一直�
 
 
 
-
-
 使用五个维度的问题是我们不能在二维平面绘制整齐小箭头了。这是机器学习中的常见问题，我们经常需要在更高维度的空间中思考。 但好在余弦相似度仍然有效，它适用于任意维度：
 
 ![图片](https://mmbiz.qpic.cn/mmbiz_png/wc7YNPm3YxWwiaLxWsKfmBN8Q4nGCyYViaBNZoia7lUPRxSt3Sp8RAcOYExVw5MZxce5zbfVRGtGKpV1VurvJJLLw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
@@ -309,15 +307,13 @@ Word2vec是一种有效创建词嵌入的方法，它自2013年以来就一直�
 
 上述的这种架构被称为连续词袋(CBOW)，在一篇关于word2vec的论文中有阐述。
 
-还有另一种架构，它不根据前后文(前后单词)来猜测目标单词，而是推测当前单词可能的前后单词。我们设想一下滑动窗在训练数据时如下图所示：
+还有另一种架构，它不根据前后文(前后单词)来猜测目标单词，而是**推测当前单词可能的前后单词**。我们设想一下滑动窗在训练数据时如下图所示：
 
 ![图片](https://mmbiz.qpic.cn/mmbiz_png/wc7YNPm3YxWwiaLxWsKfmBN8Q4nGCyYViaB8S6w0mb7KDcY5ico355XlhjPEsgyykM53GxLacFPMWrL076Y7zsAYQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
-绿框中的词语是输入词，粉框则是可能的输出结果;
+绿框中的词语是输入词，粉框则是可能的输出结果
 
-
-
-这里粉框颜色深度呈现不同，是因为滑动窗给训练集产生了4个独立的样本:
+这里粉框颜色深度呈现不同，是因为**滑动窗给训练集产生了4个独立的样本**:
 
 
 
@@ -418,8 +414,6 @@ Word2vec是一种有效创建词嵌入的方法，它自2013年以来就一直�
 
 现在的计算速度可谓是神速啦——在几分钟内就能处理数百万个例子。但是我们还需要解决一个漏洞。如果所有的例子都是邻居（目标：1），我们这个”天才模型“可能会被训练得永远返回1——准确性是百分百了，但它什么东西都学不到，只会产生垃圾嵌入结果。
 
-
-
 ![图片](https://mmbiz.qpic.cn/mmbiz_png/wc7YNPm3YxWwiaLxWsKfmBN8Q4nGCyYVian3aicRvTLdQ6iab4mtwIXs8k8FNv4xtzM9uk898r5zh4ic5vCDLIYCbibA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 为了解决这个问题，我们需要在数据集中引入负样本 - 不是邻居的单词样本。我们的模型需要为这些样本返回0。模型必须努力解决这个挑战——而且依然必须保持高速。
@@ -502,7 +496,7 @@ http://proceedings.mlr.press/v9/gutmann10a/gutmann10a.pdf
 
 
 
-当我们循环遍历整个数据集多次时，嵌入会继续得到改进。然后我们就可以停止训练过程，丢弃Context矩阵，并使用Embeddings矩阵作为下一项任务的已被训练好的嵌入。
+当我们循环遍历整个数据集多次时，嵌入会继续得到改进。然后我们就可以停止训练过程，丢弃Context矩阵，并**使用Embeddings矩阵作为下一项任务的已被训练好的嵌入**。
 
 **窗口大小和负样本数量**
 
@@ -517,10 +511,6 @@ word2vec训练过程中的两个关键超参数是窗口大小和负样本的数
 不同的任务适合不同的窗口大小。一种启发式方法是，**使用较小的窗口大小（2-15）**会得到这样的嵌入：两个嵌入之间的高相似性得分表明这些单词是可互换的（注意，如果我们只查看附近距离很近的单词，反义词通常可以互换——例如，好的和坏的经常出现在类似的语境中）。**使用较大的窗口大小（15-50，甚至更多）**会得到相似性更能指示单词相关性的嵌入。在实际操作中，你通常需要对嵌入过程提供指导以帮助读者得到相似的”语感“。Gensim默认窗口大小为5（除了输入字本身以外还包括输入字之前与之后的两个字）。
 
 ![图片](https://mmbiz.qpic.cn/mmbiz_png/wc7YNPm3YxWwiaLxWsKfmBN8Q4nGCyYVialKF9Yib7S6JKXPcSMyGqARXQyOI4sTLpGQYg0enpptA8XCibYXusPcnQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)负样本的数量是训练训练过程的另一个因素。原始论文认为5-20个负样本是比较理想的数量。它还指出，当你拥有足够大的数据集时，2-5个似乎就已经足够了。Gensim默认为5个负样本。
-
-
-
-
 
 # [BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding](https://arxiv.org/pdf/1810.04805.pdf&usg=ALkJrhhzxlCL6yTht2BRmH9atgvKFxHsxQ)
 
