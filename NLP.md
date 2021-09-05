@@ -650,11 +650,11 @@ BERT与Transformer 的编码方式一样。将固定长度的字符串作为输�
 
 ### 模型输出
 
-  每个位置返回的输出都是一个隐藏层大小的向量（基本版本BERT为768）。以文本分类为例，我们重点关注第一个位置上的输出（第一个位置是分类标识[CLS]） 。如下图
+  每个位置返回的输出都是**一个隐藏层大小的向量**（基本版本BERT为768）。以文本分类为例，我们重点关注第一个位置上的输出（第一个位置是分类标识[CLS]） 。如下图
 
 ![img](https://img-blog.csdnimg.cn/20181205091311644.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNjY0ODQ1,size_16,color_FFFFFF,t_70)
 
-​    该向量现在可以用作我们选择的分类器的输入，在论文中指出使用单层神经网络作为分类器就可以取得很好的效果。原理如下。：
+​    该向量现在可以**用作我们选择的分类器的输入**，在论文中指出使用单层神经网络作为分类器就可以取得很好的效果。原理如下。：
 
 ![img](https://img-blog.csdnimg.cn/2018120509180072.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNjY0ODQ1,size_16,color_FFFFFF,t_70)
 
@@ -672,7 +672,7 @@ BERT与Transformer 的编码方式一样。将固定长度的字符串作为输�
 
 ### Word Embedding Recap
 
-   为了让机器可以学习到文本的特征属性，我们需要一些将文本数值化的表示的方式。Word2vec算法通过使用一组固定维度的向量来表示单词，计算其方式可以捕获到单词的语义及单词与单词之间的关系。使用Word2vec的向量化表示方式可以用于判断单词是否相似，对立，或者说判断“男人‘与’女人”的关系就如同“国王”与“王后”。（这些话是不是听腻了〜 emmm水文必备）。另外还能捕获到一些语法的关系，这个在英语中很实用。例如“had”与“has”的关系如同“was”与“is”的关系。
+   为了让机器可以学习到文本的特征属性，我们需要一些将文本数值化的表示的方式。Word2vec算法通过使用一组固定维度的向量来表示单词，计算其方式可以捕获到单词的语义及单词与单词之间的关系。使用**Word2vec的向量化表示方式可以用于判断单词是否相似**，对立，或者说判断“男人‘与’女人”的关系就如同“国王”与“王后”。（这些话是不是听腻了〜 emmm水文必备）。另外还能捕获到一些语法的关系，这个在英语中很实用。例如“had”与“has”的关系如同“was”与“is”的关系。
 
    这样的做法，我们可以使用大量的文本数据来预训练一个词嵌入模型，而这个词嵌入模型可以广泛用于其他NLP的任务，这是个好主意，这使得一些初创公司或者计算资源不足的公司，也能通过下载已经开源的词嵌入模型来完成NLP的任务。
 
@@ -692,7 +692,7 @@ BERT与Transformer 的编码方式一样。将固定长度的字符串作为输�
 
 ![img](https://img-blog.csdnimg.cn/20181205105202526.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNjY0ODQ1,size_16,color_FFFFFF,t_70)
 
-EMLo改变Word2vec类的将单词固定为指定长度的向量的处理方式，它是在为每个单词分配词向量之前先查看整个句子，然后使用bi-LSTM来训练它对应的词向量。
+**EMLo改变Word2vec类的将单词固定为指定长度的向量的处理方式，它是在为每个单词分配词向量之前先查看整个句子，然后使用bi-LSTM来训练它对应的词向量**。
 
 ![img](https://img-blog.csdnimg.cn/20181205105803160.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNjY0ODQ1,size_16,color_FFFFFF,t_70)
 
@@ -710,11 +710,11 @@ EMLo改变Word2vec类的将单词固定为指定长度的向量的处理方式�
 
 从上图可以发现，每个展开的LSTM都在最后一步完成预测。
 
-对了真正的ELMo会更进一步，它不仅能判断下一个词，还能预测前一个词。（Bi-Lstm）
+对了**真正的ELMo会更进一步，它不仅能判断下一个词，还能预测前一个词。（Bi-Lstm）**
 
 ![img](https://img-blog.csdnimg.cn/20181205111900521.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNjY0ODQ1,size_16,color_FFFFFF,t_70)
 
-ELMo通过下图的方式将hidden states（的初始的嵌入）组合咋子一起来提炼出具有语境意义的词嵌入方式（全连接后加权求和）
+ELMo通过下图的方式将hidden states（的初始的嵌入）组合在一起来提炼出具有语境意义的词嵌入方式（**全连接后加权求和）**
 
 ![img](https://img-blog.csdnimg.cn/20181205114055999.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNjY0ODQ1,size_16,color_FFFFFF,t_70)
 
@@ -776,7 +776,7 @@ BERT自信回答道：“我们会用masks”
 
    我们回顾一下OpenAI transformer处理不同任务的输入转换，你会发现在某些任务上我们需要2个句子作为输入，并做一些更为智能的判断，比如是否相似，比如 给出一个维基百科的内容作为输入，同时在放入一条针对该条目的问题，那么我们的算法模型能够处理这个问题吗？
 
-   为了使BERT更好的处理2个句子之间的关系，预训练的过程还有一个额外的任务：给定2个句子（A和B）,A与B是否相似？（0或者1）
+   **为了使BERT更好的处理2个句子之间的关系，预训练的过程还有一个额外的任务：给定2个句子（A和B）,A与B是否相似？（0或者1）**
 
 ![img](https://img-blog.csdnimg.cn/20181205171102586.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNjY0ODQ1,size_16,color_FFFFFF,t_70)
 
@@ -799,7 +799,7 @@ BERT的论文为我们介绍了几种BERT可以处理的NLP任务：
 
 ![img](https://img-blog.csdnimg.cn/20181205171214334.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNjY0ODQ1,size_16,color_FFFFFF,t_70)
 
-哪个向量最适合作为上下文嵌入？ 我认为这取决于任务。 本文考察了六种选择（与微调模型相比，得分为96.4）：
+哪个向量最适合作为上下文嵌入？ 我认为这**取决于任务**。 本文考察了六种选择（与微调模型相比，得分为96.4）：
 
 ![img](https://img-blog.csdnimg.cn/20181205171255638.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNjY0ODQ1,size_16,color_FFFFFF,t_70)
 
@@ -835,9 +835,9 @@ Seq2Seq可以理解为输入一个序列,然后经过一个黑盒可以得到另
 
 黑盒中是Encoder-Decoder框架.输入体一个序列,然后编码器进行编码得到上下文信息C然后通过解码器逐一解码,得到另一个序列
 
-- 输入/输出序列都是Embedding向量
+- **输入/输出序列都是Embedding向量**
 - 上下文信息C是一个向量,其维度与编码器的数量有关,256,512
-- 逐一解码,解码器根据上下文C和先前生成的历史信息生成此时刻的输出
+- **逐一解码,**解码器根据上下文C和先前生成的历史信息生成此时刻的输出
   ![](https://mmbiz.qpic.cn/mmbiz_gif/2QhWuEVMoTKpqMXT7rJMXR6kWsz4Yx2CbKkUFmiaibpc0GcuiaCN7S8dPWxBj3uSDofrMnIv7vFticxkKYX7TpzwiaA/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1)
 
 ## 传统RNN
@@ -846,7 +846,7 @@ Seq2Seq可以理解为输入一个序列,然后经过一个黑盒可以得到另
 
 在编码器之间进行传递的其实是隐藏层的状态
 
-![](https://mmbiz.qpic.cn/mmbiz_gif/2QhWuEVMoTKpqMXT7rJMXR6kWsz4Yx2CjHnHUEX37gD0zE2Bs5c2zVMP75MXTdL7UWibJdBrBuDcB2bQsQHvDmQ/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1)\
+![](https://mmbiz.qpic.cn/mmbiz_gif/2QhWuEVMoTKpqMXT7rJMXR6kWsz4Yx2CjHnHUEX37gD0zE2Bs5c2zVMP75MXTdL7UWibJdBrBuDcB2bQsQHvDmQ/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1)
 
 编码器中最后一个 RNN 的隐藏状态就是要传给解码器的上下文信息 Context。
 
@@ -958,7 +958,7 @@ Self-Attention 允许当前处理的单词查看输入序列中的其他位置�
 
 ![](http://jalammar.github.io/images/t/transformer_self_attention_score.png)
 
-**第三步**，将这个分数处以 8（Value 向量是 64 维，取平方根，主要是为了稳定梯度）。然后将分数通过 Softmax 标准化，使它们都为正，加起来等于1。
+**第三步**，**将这个分数处以 8（Value 向量是 64 维，取平方根，主要是为了稳定梯度）。然后将分数通过 Softmax 标准化**，使它们都为正，加起来等于1。
 
 ![](http://jalammar.github.io/images/t/self-attention_softmax.png)
 
