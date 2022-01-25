@@ -25,7 +25,7 @@ GraphSTONE图结构主题神经网络
 1. 为每个节点采样匿名随机游走以描绘节点的局部结构。
 2. 然后在每个节点的匿名游走上执行Graph Anchor LDA，我们首先选择锚点，即通过非负矩阵分解进行指示性匿名游走序列。 获得游走主题和节点主题的分布之后，通过输出每个节点表示的多视图GCN将这些结构属性与原始节点特征结合起来。
 
-![](F:\GitHub\Notes_About_CL\img\c_14001.png)
+![](img/c_14001.png)
 
 **Anonymous Walks**: 类似染色法,把相同的节点匿名化为同一个节点
 
@@ -67,7 +67,7 @@ $\arg \min _{U} D_{K L}\left(Q_{i} \| \sum_{k \in \mathrm{A}} U_{i k} \operatorn
 
 **节点主题分布R**;$R=Y U^{\dagger}$,其中$U^{\dagger}$表示伪逆
 
-![](F:\GitHub\Notes_About_CL\img\c_14003.png)
+![](img\c_14003.png)
 
 **Structural-topic Aware Aggregator**
 
